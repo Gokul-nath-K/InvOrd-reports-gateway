@@ -1,0 +1,17 @@
+server:
+  port: 8383
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: reports-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: ReportingService
+          predicates:
+            - Path=/orders_report/**
+          uri: lb://ReportingService
